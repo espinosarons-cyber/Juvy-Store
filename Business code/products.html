@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome Page</title>
+  <style>
+  
+    .welcome-section {
+      height: 100vh;
+      background: linear-gradient(135deg, #007BFF, #00C3FF);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      color: white;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .welcome-section h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .welcome-section p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .welcome-section button {
+      background-color: white;
+      color: #007BFF;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .welcome-section button:hover {
+      background-color: #e6e6e6;
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+   
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #main-content {
+      padding: 60px 20px;
+      background: #f5f5f5;
+      min-height: 100vh;
+      text-align: center;
+    }
+
+    #main-content h2 {
+      font-size: 2rem;
+      color: #333;
+    }
+
+    #main-content p {
+      max-width: 600px;
+      margin: 20px auto;
+      font-size: 1.1rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+ 
+  <section id="welcome" class="welcome-section">
+    <div class="welcome-content">
+      <h1>Welcome to My Business</h1>
+      <p>We’re excited to have you here!</p>
+      <button id="getStartedBtn">Let’s Get Started</button>
+    </div>
+  </section>
+
+
+  <section id="main-content" class="reveal">
+    <h2>Our Services</h2>
+    <p>
+      Here’s where your business information, products, or services will appear.
+      You can customize this section freely!
+    </p>
+  </section>
+
+  <script>
+   
+    const getStartedBtn = document.getElementById('getStartedBtn');
+    const mainContent = document.getElementById('main-content');
+
+    getStartedBtn.addEventListener('click', () => {
+      mainContent.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    const reveals = document.querySelectorAll('.reveal');
+    function revealOnScroll() {
+      reveals.forEach((el) => {
+        const windowHeight = window.innerHeight;
+        const revealTop = el.getBoundingClientRect().top;
+        const revealPoint = 100;
+        if (revealTop < windowHeight - revealPoint) {
+          el.classList.add('active');
+        }
+      });
+    }
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+  </script>
+</body>
+</html>
